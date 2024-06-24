@@ -1,0 +1,46 @@
+<oj-vb-fragment id="page-header" bridge="[[vbBridge]]" name="page-header">
+  <oj-vb-fragment-param name="title" value="My Employees"></oj-vb-fragment-param>
+  <template slot="actions">
+  </template>
+</oj-vb-fragment>
+<div class="oj-flex">
+  <div class="oj-panel oj-flex-item oj-sm-12 oj-md-7">
+    <div class="oj-flex">
+      <oj-toolbar id="oj-toolbar-for-oj-table--381946666-1" chroming="solid" class="oj-flex-item oj-sm-12 oj-md-12">
+        <oj-button on-oj-action="[[$listeners.createEmployeeButtonClicked]]">Create Employee</oj-button>
+        <oj-button label="Show Departments" on-oj-action="[[$listeners.buttonAction]]"></oj-button>
+        <oj-button disabled="[[ $variables.oj_table_381946666_1SelectedId === '' ]]"
+          on-oj-action="[[$listeners.editEmployeeButtonClicked]]">Edit Employee</oj-button>
+        <oj-button disabled="[[ $variables.oj_table_381946666_1SelectedId === '' ]]"
+          on-oj-action="[[$listeners.deleteEmployeeButtonClicked]]">Delete Employee</oj-button>
+      </oj-toolbar>
+    </div>
+    <div class="oj-flex">
+      <oj-table scroll-policy="loadMoreOnScroll" class="oj-flex-item oj-sm-12 oj-md-12"
+        data="[[$variables.employeeListSDP]]"
+        columns='[{"headerText":"Picture","sortable":"disabled","template":"multiFieldCellTemplate1"},{"headerText":"﻿Name","field":"name"},{"headerText":"Department","field":"departmentObject","sortProperty":"departmentObject.department","template":"departmentCellTemplate3"}]'
+        id="oj-table--381946666-1" selection-mode.row="single" selection-mode.column="single"
+        on-first-selected-row-changed="[[ $listeners.oj_table_381946666_1SelectionChanged ]]">
+        <template slot="multiFieldCellTemplate1">
+          <img :src="[[ $current.row.picture ]]" width="32" height="32">
+        </template>
+        <template slot="departmentCellTemplate3">
+          <oj-bind-text value="[[ $current.data.items[0]?.department ]]"></oj-bind-text>
+        </template>
+      </oj-table>
+    </div>
+  </div>
+  <div class="oj-panel oj-flex-item oj-sm-12 oj-md-5">
+    <div class="oj-flex">
+      <oj-chart type="bar" class="oj-sm-flex-initial oj-flex-item oj-sm-12 oj-md-12"
+        data="[[$variables.employeeListSDP2]]" y-axis.title="Salary" x-axis.title="Employee Name" legend.rendered="off"
+        orientation="horizontal">
+        <template slot="itemTemplate">
+          <oj-chart-item value="[[ $current.data.salary ]]" group-id="[[[ $current.data.name ]]]" series-id="Undefined"></oj-chart-item>
+        </template>
+      </oj-chart>
+    </div>
+  </div>
+</div>
+
+

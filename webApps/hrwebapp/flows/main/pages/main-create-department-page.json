@@ -1,0 +1,83 @@
+{
+  "title": "Create Department",
+  "description": "Creates new Department",
+  "variables": {
+    "createDepartmentChainInProgress": {
+      "type": "boolean",
+      "defaultValue": false
+    },
+    "department": {
+      "type": "createDepartmentRequest"
+    },
+    "locationListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Location",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "getallLocationResponse",
+        "uriParameters": {}
+      }
+    }
+  },
+  "metadata": {},
+  "types": {
+    "@decorators.createDepartmentRequest": {
+      "endpoint": "create_Department",
+      "service": "businessObjects",
+      "path": "request"
+    },
+    "@decorators.getallLocationResponse": {
+      "endpoint": "getall_Location",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "createDepartmentRequest": {
+      "department": "string",
+      "location": "number"
+    },
+    "getallLocationResponse": {
+      "items": [
+        {
+          "id": "number",
+          "location": "string"
+        }
+      ]
+    }
+  },
+  "eventListeners": {
+    "backButtonClicked": {
+      "chains": [
+        {
+          "chain": "goBackChain"
+        }
+      ]
+    },
+    "saveButtonClicked": {
+      "chains": [
+        {
+          "chain": "createDepartmentChain"
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-form-layout": {
+        "path": "ojs/ojformlayout"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-select-single": {
+        "path": "ojs/ojselectsingle"
+      },
+      "oj-validation-group": {
+        "path": "ojs/ojvalidationgroup"
+      }
+   }
+  }
+}

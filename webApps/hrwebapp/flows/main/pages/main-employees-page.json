@@ -1,0 +1,132 @@
+{
+  "title": "main employees",
+  "description": "",
+  "variables": {
+    "employeeListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Employee",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "getallEmployeeResponse"
+      }
+    },
+    "employeeListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Employee",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "getallEmployeeResponse2"
+      }
+    },
+    "oj_table_381946666_1SelectedId": {
+      "type": "string",
+      "defaultValue": ""
+    }
+  },
+  "metadata": {},
+  "types": {
+    "@decorators.getallEmployeeResponse": {
+      "endpoint": "getall_Employee",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "@decorators.getallEmployeeResponse2": {
+      "endpoint": "getall_Employee",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "getallEmployeeResponse": {
+      "items": [
+        {
+          "departmentObject": {
+            "items": [
+              {
+                "department": "string"
+              }
+            ]
+          },
+          "id": "number",
+          "name": "string",
+          "picture": "string"
+        }
+      ]
+    },
+    "getallEmployeeResponse2": {
+      "items": [
+        {
+          "id": "number",
+          "name": "string",
+          "salary": "number"
+        }
+      ]
+    }
+  },
+  "eventListeners": {
+    "buttonAction": {
+      "chains": [
+        {
+          "chain": "ButtonActionChain"
+        }
+      ]
+    },
+    "createEmployeeButtonClicked": {
+      "chains": [
+        {
+          "chain": "navigateToCreateEmployeeChain"
+        }
+      ]
+    },
+    "deleteEmployeeButtonClicked": {
+      "chains": [
+        {
+          "chain": "deleteEmployeeChain",
+          "parameters": {
+            "employeeId": "[[ $variables.oj_table_381946666_1SelectedId ]]"
+          }
+        }
+      ]
+    },
+    "editEmployeeButtonClicked": {
+      "chains": [
+        {
+          "chain": "navigateToEditEmployeeChain",
+          "parameters": {
+            "employeeId": "[[ $variables.oj_table_381946666_1SelectedId ]]"
+          }
+        }
+      ]
+    },
+    "oj_table_381946666_1SelectionChanged": {
+      "chains": [
+        {
+          "chain": "ojTable3819466661ChangeSelectionChain",
+          "parameters": {
+            "employeeId": "[[ $event.detail.value.key || '' ]]"
+          }
+        }
+      ]
+    }
+
+  },
+  "imports": {
+    "components": {
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-chart": {
+        "path": "ojs/ojchart"
+      },
+      "oj-chart-item": {
+        "path": "ojs/ojchart"
+      },
+      "oj-table": {
+        "path": "ojs/ojtable"
+      },
+      "oj-toolbar": {
+        "path": "ojs/ojtoolbar"
+      }
+   }
+  }
+}

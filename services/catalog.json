@@ -1,0 +1,12 @@
+{
+    "backends": {
+        "Countries": {
+            "servers": [
+                {
+                    "url": "https://restcountries.com/v2",
+                    "description": "V2"
+                }
+            ]
+        }
+      }
+}

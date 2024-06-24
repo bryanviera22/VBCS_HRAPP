@@ -1,0 +1,28 @@
+<oj-vb-fragment id="page-header" bridge="[[vbBridge]]" name="page-header">
+  <oj-vb-fragment-param name="title" value="Departments"></oj-vb-fragment-param>
+  <template slot="actions">
+  </template>
+</oj-vb-fragment>
+<div class="oj-flex">
+  <oj-toolbar id="oj-toolbar-for-oj-table-1410790259-1" chroming="solid" class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-button on-oj-action="[[$listeners.createDepartmentButtonClicked]]">Create Department</oj-button>
+    <oj-button label="Show Employees" on-oj-action="[[$listeners.buttonAction]]"></oj-button>
+    <oj-button disabled="[[ $variables.oj_table_1410790259_1SelectedId === '' ]]"
+      on-oj-action="[[$listeners.editDepartmentButtonClicked]]">Edit Department</oj-button>
+    <oj-button disabled="[[ $variables.oj_table_1410790259_1SelectedId === '' ]]"
+      on-oj-action="[[$listeners.deleteDepartmentButtonClicked]]">Delete Department</oj-button>
+  </oj-toolbar>
+</div>
+<div class="oj-flex">
+  <oj-table scroll-policy="loadMoreOnScroll" class="oj-flex-item oj-sm-12 oj-md-12"
+    data="[[$variables.departmentListSDP]]"
+    columns='[{"headerText":"Id","field":"id"},{"headerText":"Department","field":"department"},{"headerText":"Location","field":"locationObject","sortProperty":"locationObject.location","template":"locationCellTemplate3"}]'
+    id="oj-table-1410790259-1" selection-mode.row="single" selection-mode.column="single"
+    on-first-selected-row-changed="[[ $listeners.oj_table_1410790259_1SelectionChanged ]]">
+    <template slot="locationCellTemplate3">
+      <oj-bind-text value="[[ $current.data.items[0]?.location ]]"></oj-bind-text>
+    </template>
+  </oj-table>
+</div>
+
+

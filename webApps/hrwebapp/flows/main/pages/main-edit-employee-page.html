@@ -1,0 +1,42 @@
+<oj-vb-fragment id="page-header" bridge="[[vbBridge]]" name="page-header">
+  <oj-vb-fragment-param name="title" value="Edit Employee"></oj-vb-fragment-param>
+  <template slot="actions">
+    <oj-button on-oj-action="[[$listeners.backButtonClicked]]" chroming="borderless">Cancel</oj-button>
+    <oj-button on-oj-action="[[$listeners.saveButtonClicked]]" chroming="callToAction"
+      disabled="[[ $variables.saveEmployeeChainInProgress ]]">Save</oj-button>
+  </template>
+</oj-vb-fragment>
+<div class="oj-flex">
+  <div class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-avatar size="lg" src="[[ $variables.employee.picture ]]"></oj-avatar>
+  </div>
+</div>
+<div class="oj-flex">
+  <oj-validation-group id="validation-group" class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-form-layout max-columns="2">
+      <oj-input-text value="{{ $variables.employee.name }}" label-hint="﻿Name" required="true"></oj-input-text>
+      <oj-input-text value="{{ $variables.employee.picture }}" label-hint="Picture"></oj-input-text>
+      <oj-input-date value="{{ $variables.employee.hireDate }}" label-hint="Hire Date"></oj-input-date>
+      <oj-input-text value="{{ $variables.employee.email }}" label-hint="Email"></oj-input-text>
+      <oj-select-single value="{{ $variables.employee.department }}" label-hint="Department"
+        data="[[ $variables.departmentListSDP ]]" item-text="department"></oj-select-single>
+      <oj-input-number value="{{ $variables.employee.salary }}" label-hint="Salary"></oj-input-number>
+      <oj-input-text value="{{ $variables.employee.country }}" label-hint="Country"
+        on-value-changed="[[$listeners.inputTextValue]]"></oj-input-text>
+    </oj-form-layout>
+  </oj-validation-group>
+</div>
+<div class="oj-flex">
+  <h6 class="oj-header oj-flex-item oj-sm-12 oj-md-12">Country Info</h6>
+</div>
+<div class="oj-flex">
+  <div class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-form-layout>
+      <oj-avatar class="oj-flex-item oj-sm-flex-initial" size="lg" src="[[ $variables.countryTypeVar.flag ]]"></oj-avatar>
+      <oj-input-text label-hint="Time Zone" value="{{ $variables.countryTypeVar.timezones[0] }}"></oj-input-text>
+      <oj-input-text label-hint="Region" value="{{ $variables.countryTypeVar.region }}"></oj-input-text>
+    </oj-form-layout>
+  </div>
+</div>
+
+

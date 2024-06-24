@@ -1,0 +1,99 @@
+{
+  "title": "Create Employee",
+  "description": "Creates new Employee",
+  "variables": {
+    "createEmployeeChainInProgress": {
+      "type": "boolean",
+      "defaultValue": false
+    },
+    "departmentListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Department",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "getallDepartmentResponse",
+        "uriParameters": {}
+      }
+    },
+    "employee": {
+      "type": "createEmployeeRequest"
+    }
+  },
+  "metadata": {},
+  "types": {
+    "@decorators.createEmployeeRequest": {
+      "endpoint": "create_Employee",
+      "service": "businessObjects",
+      "path": "request"
+    },
+    "@decorators.getallDepartmentResponse": {
+      "endpoint": "getall_Department",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "createEmployeeRequest": {
+      "country": "string",
+      "department": "number",
+      "email": "string",
+      "hireDate": "string",
+      "name": "string",
+      "picture": "string",
+      "salary": "number"
+    },
+    "getallDepartmentResponse": {
+      "items": [
+        {
+          "department": "string",
+          "id": "number"
+        }
+      ]
+    }
+  },
+  "eventListeners": {
+    "backButtonClicked": {
+      "chains": [
+        {
+          "chain": "goBackChain"
+        }
+      ]
+    },
+    "saveButtonClicked": {
+      "chains": [
+        {
+          "chain": "createEmployeeChain"
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-form-layout": {
+        "path": "ojs/ojformlayout"
+      },
+      "oj-input-date": {
+        "path": "ojs/ojdatetimepicker"
+      },
+      "oj-input-number": {
+        "path": "ojs/ojinputnumber"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-select-single": {
+        "path": "ojs/ojselectsingle"
+      },
+      "oj-validation-group": {
+        "path": "ojs/ojvalidationgroup"
+      }
+   },
+    "modules": {
+      "ojValidationBase": {
+        "path": "ojs/ojvalidation-base"
+      }
+    }
+  }
+}

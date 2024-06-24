@@ -1,0 +1,18 @@
+{
+  "id": "main",
+  "description": "Flow main",
+  "defaultPage": "main-employees",
+  "services": {},
+  "types": {},
+  "variables": {},
+  "@dt": {
+    "chains": {
+      "validateFormChain": {
+        "autowire": {
+          "contextKey": "vb-quickstarts-js",
+          "name": "validateFormChain"
+        }
+      }
+    }
+  }
+}

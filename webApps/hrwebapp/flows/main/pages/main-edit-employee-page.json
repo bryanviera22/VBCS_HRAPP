@@ -1,0 +1,141 @@
+{
+  "title": "Edit Employee",
+  "description": "Updates single Employee record",
+  "variables": {
+    "countryTypeVar": {
+      "type": "countryType"
+    },
+    "departmentListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Department",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "getallDepartmentResponse",
+        "uriParameters": {}
+      }
+    },
+    "employee": {
+      "type": "getEmployeeResponse"
+    },
+    "employeeETag": {
+      "type": "string"
+    },
+    "employeeId": {
+      "type": "string",
+      "required": true,
+      "input": "fromUrl"
+    },
+    "fetchedEmployee": {
+      "type": "getEmployeeResponse"
+    },
+    "saveEmployeeChainInProgress": {
+      "type": "boolean",
+      "defaultValue": false
+    }
+
+  },
+  "metadata": {},
+  "types": {
+    "@decorators.countryType": {
+      "endpoint": "getAlphaCode",
+      "service": "Countries",
+      "path": "response"
+    },
+    "@decorators.getallDepartmentResponse": {
+      "endpoint": "getall_Department",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "@decorators.getEmployeeResponse": {
+      "endpoint": "get_Employee",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "countryType": {
+      "flag": "string",
+      "region": "string",
+      "timezones": "string[]"
+    },
+    "getallDepartmentResponse": {
+      "items": [
+        {
+          "department": "string",
+          "id": "number"
+        }
+      ]
+    },
+    "getEmployeeResponse": {
+      "country": "string",
+      "department": "number",
+      "email": "string",
+      "hireDate": "string",
+      "name": "string",
+      "picture": "string",
+      "salary": "number"
+    }
+
+  },
+  "eventListeners": {
+    "backButtonClicked": {
+      "chains": [
+        {
+          "chain": "goBackChain"
+        }
+      ]
+    },
+    "inputTextValue": {
+      "chains": [
+        {
+          "chain": "InputTextValueChangeChain",
+          "parameters": {
+            "value": "{{ $event.detail.value }}"
+          }
+        }
+      ]
+    },
+    "saveButtonClicked": {
+      "chains": [
+        {
+          "chain": "saveEmployeeChain"
+        }
+      ]
+    },
+    "vbEnter": {
+      "chains": [
+        {
+          "chain": "loadEmployeeChain"
+        }
+      ]
+    }
+
+  },
+  "imports": {
+    "components": {
+      "oj-avatar": {
+        "path": "ojs/ojavatar"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-form-layout": {
+        "path": "ojs/ojformlayout"
+      },
+      "oj-input-date": {
+        "path": "ojs/ojdatetimepicker"
+      },
+      "oj-input-number": {
+        "path": "ojs/ojinputnumber"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-select-single": {
+        "path": "ojs/ojselectsingle"
+      },
+      "oj-validation-group": {
+        "path": "ojs/ojvalidationgroup"
+      }
+   }
+  }
+}

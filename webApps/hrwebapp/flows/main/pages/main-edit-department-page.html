@@ -1,0 +1,19 @@
+<oj-vb-fragment id="page-header" bridge="[[vbBridge]]" name="page-header">
+  <oj-vb-fragment-param name="title" value="Edit Department"></oj-vb-fragment-param>
+  <template slot="actions">
+    <oj-button on-oj-action="[[$listeners.backButtonClicked]]" chroming="borderless">Cancel</oj-button>
+    <oj-button on-oj-action="[[$listeners.saveButtonClicked]]" chroming="callToAction"
+      disabled="[[ $variables.saveDepartmentChainInProgress ]]">Save</oj-button>
+  </template>
+</oj-vb-fragment>
+<div class="oj-flex">
+  <oj-validation-group id="validation-group" class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-form-layout>
+      <oj-input-text value="{{ $variables.department.department }}" label-hint="Department" required="true"></oj-input-text>
+      <oj-select-single value="{{ $variables.department.location }}" label-hint="Location"
+        data="[[ $variables.locationListSDP ]]" item-text="location"></oj-select-single>
+    </oj-form-layout>
+  </oj-validation-group>
+</div>
+
+
